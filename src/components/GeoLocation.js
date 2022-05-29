@@ -1,14 +1,17 @@
+import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { GOOGLE_API_KEY } from "../API";
-import axios from "axios";
 import { LocationContext } from "../contexts/LocationContext";
 import { GOOGLE_BASE_URL } from "../API";
+import styled from "styled-components";
 const GeoLocation = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [area, setArea] = useState("");
-  const { setStateContext, setCountryContext } = useContext(LocationContext);
+  const { setStateContext, setCountryContext, stateContext } =
+    useContext(LocationContext);
+
   useEffect(() => {
     const getUserAddress = (position) => {
       const location = `${position.coords.latitude},${position.coords.longitude}`;
@@ -56,58 +59,26 @@ const GeoLocation = () => {
         alert("An unknown error occurred.");
     }
   };
+  // <Address>
+  //   {stateContext && <p> {` ${stateContext}, ${country} `}</p>}
 
-  //   const displayLocation = () => {
-  //     var geocoder, count, country, state, city;
-  //     geocoder = new google.maps.Geocoder();
-  //     var latlng = new google.maps.LatLng(latitude, longitude);
-
-  //     geocoder.geocode({ latLng: latlng }, function (results, status) {
-  //       if (status == google.maps.GeocoderStatus.OK) {
-  //         if (results[0]) {
-  //           var add = results[0].formatted_address;
-  //           var value = add.split(",");
-
-  //           count = value.length;
-  //           country = value[count - 1];
-  //           state = value[count - 2];
-  //           city = value[count - 3];
-  //           alert("city name is: " + city);
-  //         } else {
-  //           alert("address not found");
-  //         }
-  //       } else {
-  //         alert("Geocoder failed due to: " + status);
-  //       }
-  //     });
-  //   };
-
-  //   const getLocation = () => {
-  //     if (navigator.geolocation) {
-  //       navigator.geolocation.getCurrentPosition(
-  //         getCoordinates,
-  //         handleLocationErrors
-  //       );
-  //     } else {
-  //       alert("Geolocation is not supported by this browser.");
-  //     }
-  //   };
-  //   const getCoordinates = (position) => {
-  //     setLatitude(position.coords.latitude);
-  //     setLongitude(position.coords.longitude);
-  //   };
-  return (
-    <div>
-      <p>Address: {`${area},${city},${state},${country} `}</p>
-      {/* {latitude && longitude ? (
-        <img
-          src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=14&size=300x200&sensor=false&markers=color:red%7c${latitude},${longitude}&key=${GOOGLE_API_KEY}`}
-          alt=""
-        />
-      ) : (
-        ""
-      )} */}
-    </div>
-  );
+  //   {latitude && longitude ? (
+  //     <img
+  //       src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=14&size=300x200&sensor=false&markers=color:red%7c${latitude},${longitude}&key=${GOOGLE_API_KEY}`}
+  //       alt=""
+  //     />
+  //   ) : (
+  //     ""
+  //   )}
+  // </Address>
+  return null;
 };
+
+const Address = styled.div`
+  p {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 2rem;
+  }
+`;
 export default GeoLocation;

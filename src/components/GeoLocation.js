@@ -1,16 +1,10 @@
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { GOOGLE_API_KEY } from "../API";
 import { LocationContext } from "../contexts/LocationContext";
 import { GOOGLE_BASE_URL } from "../API";
-import styled from "styled-components";
 const GeoLocation = () => {
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [area, setArea] = useState("");
-  const { setStateContext, setCountryContext, stateContext } =
-    useContext(LocationContext);
+  const { setStateContext } = useContext(LocationContext);
 
   useEffect(() => {
     const getUserAddress = (position) => {
@@ -22,11 +16,6 @@ const GeoLocation = () => {
           var json = JSON.parse(data);
           var value = json.results[0].formatted_address.split(",");
           let count = value.length;
-          setArea(value[count - 4]);
-          setCity(value[count - 3]);
-          setState(value[count - 2]);
-          setCountry(value[count - 1]);
-          setCountryContext(value[count - 1]);
           let splitState = value[count - 2].split(" ");
           setStateContext(splitState[count - 4]);
         })
@@ -59,26 +48,20 @@ const GeoLocation = () => {
         alert("An unknown error occurred.");
     }
   };
-  // <Address>
-  //   {stateContext && <p> {` ${stateContext}, ${country} `}</p>}
 
-  //   {latitude && longitude ? (
-  //     <img
-  //       src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=14&size=300x200&sensor=false&markers=color:red%7c${latitude},${longitude}&key=${GOOGLE_API_KEY}`}
-  //       alt=""
-  //     />
-  //   ) : (
-  //     ""
-  //   )}
-  // </Address>
   return null;
 };
 
-const Address = styled.div`
-  p {
-    text-align: center;
-    font-size: 3rem;
-    margin-top: 2rem;
-  }
-`;
 export default GeoLocation;
+// <Address>
+//   {stateContext && <p> {` ${stateContext}, ${country} `}</p>}
+
+//   {latitude && longitude ? (
+//     <img
+//       src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=14&size=300x200&sensor=false&markers=color:red%7c${latitude},${longitude}&key=${GOOGLE_API_KEY}`}
+//       alt=""
+//     />
+//   ) : (
+//     ""
+//   )}
+// </Address>

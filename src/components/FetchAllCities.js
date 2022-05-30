@@ -25,7 +25,6 @@ const FetchAllCities = () => {
   return (
     <MainContainer>
       <h4>Different Cities</h4>
-
       <StyledCities>
         {cities.map((element) => (
           <Link key={uuid()} to={`/city/${element}`}>

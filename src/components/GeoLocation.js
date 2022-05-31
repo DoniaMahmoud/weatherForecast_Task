@@ -49,7 +49,7 @@ const GeoLocation = () => {
     }
   };
 
-  return null;
+  return <div>{/* <h4>Current Location</h4> */}</div>;
 };
 
 export default GeoLocation;

@@ -106,6 +106,7 @@ const Images = styled.div`
   }
   .moving-cloud-1 {
     animation: cloudAnimation 3s infinite alternate ease-in-out;
+    z-index: 20;
   }
   .moving-cloud-2 {
     top: 20%;

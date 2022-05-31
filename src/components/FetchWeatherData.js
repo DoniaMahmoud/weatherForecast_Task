@@ -4,6 +4,8 @@ import { WEATHER_FINAL_API } from "../API";
 import { LocationContext } from "../contexts/LocationContext";
 import WeatherSummary from "./WeatherSummary";
 import { useParams } from "react-router-dom";
+import BarChart from "../charts/BarChart";
+import PieChart from "../charts/PieChart";
 const FetchWeatherData = () => {
   const { id } = useParams();
   const [data, setData] = useState("");
@@ -11,7 +13,7 @@ const FetchWeatherData = () => {
   const format = "json";
   const NUM_OF_DAYS = 10;
   const final_url = `${WEATHER_FINAL_API}&q=${stateContext}&format=${format}&num_of_days=${NUM_OF_DAYS}`;
-  const id_url = `${WEATHER_FINAL_API}&q=${id}&format=${format}&num_of_days=${NUM_OF_DAYS}`;
+  const id_url = `${WEATHER_FINAL_API}&q=${id}&format=${format}&num_of_days=${NUM_OF_DAYS}&mca=yes`;
 
   const fetchData = (url) => {
     axios
@@ -34,6 +36,12 @@ const FetchWeatherData = () => {
       fetchData(final_url);
     }
   }, [stateContext, id]);
-  return <div>{data && <WeatherSummary data={data} />}</div>;
+  return (
+    <div>
+      {data && <WeatherSummary data={data} />}
+      {id && data && <BarChart dataa={data} />}
+      {id && data && <PieChart dataa={data} />}
+    </div>
+  );
 };
 export default FetchWeatherData;

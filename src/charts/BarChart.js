@@ -20,7 +20,6 @@ function BarChart({ dataa }) {
       };
     });
     setData(data);
-    console.log(data);
   };
 
   useEffect(() => {

@@ -28,7 +28,6 @@ const FetchWeatherData = () => {
   });
   const fetchData = (url) => {
     setIsLoading(true);
-
     axios
       .get(url)
       .then((response) => {

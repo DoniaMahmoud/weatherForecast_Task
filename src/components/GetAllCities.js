@@ -87,6 +87,16 @@ const StyledCities = styled.div`
   a {
     text-decoration: none;
   }
+  a:hover {
+    background-color: #daeeda84;
+    border-radius: 4px;
+    animation: animate 0.5s forwards;
+  }
+  p {
+    font-size: 1.3rem;
+    margin: 1rem 0rem;
+    color: white;
+  }
   @keyframes animate {
     from {
       transform: scale(1);
@@ -94,16 +104,6 @@ const StyledCities = styled.div`
     to {
       transform: scale(1.1);
     }
-  }
-  p {
-    font-size: 1.3rem;
-    margin: 1rem 0rem;
-    color: white;
-  }
-  a:hover {
-    background-color: #daeeda84;
-    border-radius: 4px;
-    animation: animate 0.5s forwards;
   }
   @media screen and (max-width: 800px) {
     p {

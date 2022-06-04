@@ -11,7 +11,6 @@ const MonthlyHistory = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [arrYears, setArrYears] = useState([]);
   const [arrMonths, setArrMonths] = useState([]);
-  const [buttonClicked, setButtonClicked] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [data, setData] = useState("");
   const { id } = useParams();
@@ -43,7 +42,6 @@ const MonthlyHistory = () => {
   const handleClick = (e) => {
     if (selectedMonth && selectedYear) {
       fetchData();
-      setButtonClicked(true);
     } else {
       setErrorMsg("Both fields are required.");
     }
@@ -65,7 +63,7 @@ const MonthlyHistory = () => {
     <Main>
       <div className="center">
         <select
-          className="minimal"
+          className="list"
           value={selectedYear}
           onChange={handleChangeYear}
         >
@@ -75,7 +73,7 @@ const MonthlyHistory = () => {
           ))}
         </select>
         <select
-          className="minimal"
+          className="list"
           value={selectedMonth}
           onChange={handleChangeMonth}
         >
@@ -86,7 +84,7 @@ const MonthlyHistory = () => {
         </select>
         <button onClick={handleClick}> Get Weather Data</button>
       </div>
-      {buttonClicked && data && selectedMonth && selectedYear ? (
+      {data && selectedMonth && selectedYear ? (
         <Cards>
           <Card>
             <h4>Date</h4>
@@ -135,13 +133,10 @@ const Main = styled.div`
   }
   button {
     background-color: #2f4a6d;
-    /* border: none; */
     color: white;
     padding: 0.8rem;
     text-align: center;
     text-decoration: none;
-
-    /* display: inline-block; */
     font-size: 1.1rem;
     margin: 1rem 2rem;
     transition-duration: 0.8s;
@@ -155,13 +150,7 @@ const Main = styled.div`
       border: 1.5px solid #2f4a6d;
     }
   }
-  h1 {
-    font-family: "Inter";
-    padding: 1rem 4rem;
-    margin-top: 3rem;
-  }
   select {
-    /* styling */
     background-color: white;
     border: thin solid blue;
     border-radius: 4px;
@@ -178,13 +167,8 @@ const Main = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
   }
-  @media screen and (max-width: 610px) {
-    select,
-    button {
-      font-size: 0.8rem;
-    }
-  }
-  select.minimal {
+
+  select.list {
     background-image: linear-gradient(45deg, transparent 50%, gray 50%),
       linear-gradient(135deg, gray 50%, transparent 50%),
       linear-gradient(to right, #ccc, #ccc);
@@ -194,7 +178,7 @@ const Main = styled.div`
     background-repeat: no-repeat;
   }
 
-  select.minimal:focus {
+  select.list:focus {
     background-image: linear-gradient(45deg, blue 50%, transparent 50%),
       linear-gradient(135deg, transparent 50%, blue 50%),
       linear-gradient(to right, #ccc, #ccc);
@@ -209,6 +193,12 @@ const Main = styled.div`
   select:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 #000;
+  }
+  @media screen and (max-width: 610px) {
+    select,
+    button {
+      font-size: 0.8rem;
+    }
   }
 `;
 const Scroll = styled.div`
@@ -236,35 +226,29 @@ const Scroll = styled.div`
 `;
 const Cards = styled.div`
   text-align: center;
-  /* background-color: white; */
-  /* margin: 2rem 15rem; */
   width: 80%;
   margin: auto;
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(0, 0, 0, 0.1);
   @media screen and (max-width: 1150px) {
-    /* padding: 1rem; */
     h2,
     h3,
     h4,
     h5 {
       font-size: 1vw;
     }
-    /* width: 70%; */
   }
 `;
 const ErrorMessage = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* border: 2px solid green; */
-  /* margin-bottom: 5rem; */
+  margin: 2rem 0rem;
   p {
     color: white;
-    padding: 0.4rem 0rem 0rem 0.5rem;
+    padding: 0rem 0rem 0rem 0.5rem;
     font-size: 1.1rem;
   }
   img {
-    /* height: 1.3rem; */
     width: 1.25rem;
   }
 `;
@@ -274,7 +258,6 @@ const Card = styled.div`
   align-items: center;
   background-color: #295e8f;
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(0, 0, 0, 0.1);
-
   h4 {
     margin: 1rem 2rem;
     color: white;
@@ -290,6 +273,12 @@ const Card = styled.div`
 `;
 const TableCard = styled.div`
   padding: 2rem;
+  align-items: center;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  border: 0.2px solid lightgray;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
   &:hover {
     transform: scale(1.05);
     transition: transform 0.5s ease-in-out;
@@ -297,24 +286,16 @@ const TableCard = styled.div`
     box-shadow: 0px 30px 30px rgba(0, 0, 0, 0.1),
       0px 30px 30px rgba(0, 0, 0, 0.1);
   }
-  align-items: center;
-  background-color: white;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  border: 0.2px solid lightgray;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
-
-  h5 {
-    font-size: 1.2rem;
-    color: #417aaf;
-  }
   h2,
   h3,
   h4 {
     font-weight: 700;
     font-size: 1.2rem;
   }
-
+  h5 {
+    font-size: 1.2rem;
+    color: #417aaf;
+  }
   @media screen and (max-width: 1150px) {
     padding: 0.8rem;
     h2,

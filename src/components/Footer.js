@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <StyledFooter>
-      <div className="footer-wrapper">
+      <div className="footer">
         <h5>Weather Forecast &copy;</h5>
       </div>
     </StyledFooter>
@@ -13,13 +13,11 @@ const Footer = () => {
 const StyledFooter = styled.div`
   background: rgba(19, 28, 39, 1);
   color: white;
-  .footer-wrapper {
+  .footer {
     padding: 2rem;
     width: 90%;
     margin: auto;
-    align-items: center;
     min-height: 10vh;
-    flex-wrap: wrap;
   }
   h5 {
     font-size: 1.2rem;

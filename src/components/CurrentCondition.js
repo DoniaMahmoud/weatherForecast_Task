@@ -55,7 +55,6 @@ const CurrentCondition = ({ data }) => {
           &deg;F
         </p>
       </StyledTemp>
-
       <Hourly>
         <h4>HOURLY FORECAST</h4>
         <HourlyCondition>
@@ -147,7 +146,6 @@ const StyledTemp = styled.div`
   }
   @media screen and (max-width: 820px) {
     flex-direction: column;
-
     text-align: center;
     margin-top: 2rem;
 
@@ -174,12 +172,12 @@ const Temp = styled.div`
   }
 `;
 const Current = styled.div`
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3), 0px 10px 10px rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 1%;
   margin: 2rem;
   justify-content: space-between;
   background: rgba(19, 28, 39, 0.7);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3), 0px 10px 10px rgba(0, 0, 0, 0.3);
   color: white;
   border-radius: 5px;
   padding: 1.5rem;

@@ -20,13 +20,12 @@ const StyledNav = styled.nav`
   padding: 1rem 8rem;
   background: rgba(19, 28, 39, 1);
   position: sticky;
-  top: 0;
+  /* top: 0; */
   z-index: 40;
   a {
     color: white;
     text-decoration: none;
   }
-
   #logo {
     font-size: 2rem;
     font-family: "Lobster", cursive;

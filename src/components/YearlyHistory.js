@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { WEATHER_FINAL_API } from "../API";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 const YearlyHistory = () => {
   const [data, setData] = useState("");
   const { id } = useParams();
@@ -59,16 +59,13 @@ const YearlyHistory = () => {
   );
 };
 const Main = styled.div`
-  p {
-    font-size: 2rem;
-  }
   margin: 2rem 0rem;
 `;
+
 const Scroll = styled.div`
   height: 340px;
   overflow: scroll;
   overflow-x: hidden;
-
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -95,7 +92,6 @@ const Cards = styled.div`
 
   @media screen and (max-width: 1150px) {
     h2,
-    h3,
     h4,
     h5 {
       font-size: 1vw;
@@ -111,7 +107,6 @@ const Card = styled.div`
   align-items: center;
   background-color: #295e8f;
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(0, 0, 0, 0.1);
-
   h4 {
     margin: 1rem 2rem;
     color: white;
@@ -127,6 +122,12 @@ const Card = styled.div`
 `;
 const TableCard = styled.div`
   padding: 2rem;
+  align-items: center;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 0.2px solid lightgray;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
   &:hover {
     transform: scale(1.05);
     transition: transform 0.5s ease-in-out;
@@ -134,19 +135,11 @@ const TableCard = styled.div`
     box-shadow: 0px 30px 30px rgba(0, 0, 0, 0.1),
       0px 30px 30px rgba(0, 0, 0, 0.1);
   }
-  align-items: center;
-  background-color: white;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  border: 0.2px solid lightgray;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
-
   h5 {
     font-size: 1.2rem;
     color: #417aaf;
   }
   h2,
-  h3,
   h4 {
     font-weight: 700;
     font-size: 1.2rem;
@@ -154,7 +147,6 @@ const TableCard = styled.div`
   @media screen and (max-width: 1150px) {
     padding: 1.2rem;
     h2,
-    h3,
     h4,
     h5 {
       font-size: 1.5vw;

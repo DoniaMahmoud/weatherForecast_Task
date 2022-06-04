@@ -7,7 +7,7 @@ import { useAnimation } from "framer-motion";
 
 const RestCondition = ({ data }) => {
   const controls = useAnimation();
-  const [element, view] = useInView();
+  const [element, view] = useInView({ threshold: 0.3 });
   if (view) {
     controls.start("show");
   } else {
@@ -40,9 +40,30 @@ const RestCondition = ({ data }) => {
     </Rest>
   );
 };
+const Rest = styled.div`
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3), 0px 10px 10px rgba(0, 0, 0, 0.3);
+  margin: 1rem 2rem;
+  justify-content: space-between;
+  background: rgba(19, 28, 39, 0.7);
+  color: white;
+  border-radius: 5px;
+  padding: 1.5rem;
+  h4 {
+    margin: 0rem 1.5rem;
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 650px) {
+    padding: 0.7rem;
+    h4 {
+      margin: 0.3rem 1.5rem;
+      font-size: 1.5vw;
+    }
+  }
+`;
 const StyledRest = styled.div`
-  margin: 1rem 1.5rem;
   display: flex;
+  flex-direction: row;
+  margin: 1rem 1.5rem;
   justify-content: space-between;
   p {
     font-size: 1.2rem;
@@ -60,28 +81,8 @@ const StyledRest = styled.div`
     }
   }
 `;
-const Rest = styled.div`
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3), 0px 10px 10px rgba(0, 0, 0, 0.3);
-  margin: 1rem 2rem;
-  justify-content: space-between;
-  background: rgba(19, 28, 39, 0.7);
-  color: white;
-  border-radius: 5px;
-  padding: 1.5rem;
-  h4 {
-    margin: 0rem 1.5rem;
-    font-size: 1rem;
-  }
-  @media screen and (max-width: 650px) {
-    padding: 0.7rem;
 
-    h4 {
-      margin: 0.3rem 1.5rem;
-      font-size: 1.5vw;
-    }
-  }
-`;
-const RestData = styled(motion.div)`
+const RestData = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -113,7 +114,6 @@ const RestData = styled(motion.div)`
   }
   @media screen and (min-width: 800px) and (max-width: 1050px) {
     padding: 0.9rem;
-
     p {
       margin: 0rem 1rem;
     }
@@ -121,7 +121,7 @@ const RestData = styled(motion.div)`
 `;
 
 const Spacing = styled.div`
-  margin: 0rem 2rem 0rem 40rem;
+  margin: 0rem 0rem 0rem 40rem;
   @media screen and (max-width: 380px) {
     margin: 0rem 0rem 0rem 3rem;
   }

@@ -7,9 +7,7 @@ import { LocationProvider } from "./contexts/LocationContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/*For React Router*/}
     <BrowserRouter>
-      {/* Any component inside the provider can access provider values */}
       <LocationProvider>
         <App />
       </LocationProvider>

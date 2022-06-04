@@ -5,37 +5,9 @@ import { motion } from "framer-motion";
 const Nav = () => {
   return (
     <StyledNav>
-      <h1>
-        <Link id="logo" to="/">
-          Weather Forecast
-        </Link>
-      </h1>
-      {/* <ul>
-        <li>
-          <Link to="/">About Us</Link>
-          <Line
-            transition={{ duration: 0.75 }}
-            initial={{ width: "0%" }}
-            animate={{ width: pathname === "/" ? "50%" : "0%" }}
-          />
-        </li>
-        <li>
-          <Link to="/work">Our Work</Link>
-          <Line
-            transition={{ duration: 0.75 }}
-            initial={{ width: "0%" }}
-            animate={{ width: pathname === "/work" ? "50%" : "0%" }}
-          />
-        </li>
-        <li>
-          <Link to="/contact">Contact Us</Link>
-          <Line
-            transition={{ duration: 0.75 }}
-            initial={{ width: "0%" }}
-            animate={{ width: pathname === "/contact" ? "50%" : "0%" }}
-          />
-        </li>
-      </ul> */}
+      <Link id="logo" to="/">
+        Weather Forecast
+      </Link>
     </StyledNav>
   );
 };
@@ -47,41 +19,26 @@ const StyledNav = styled.nav`
   align-items: center;
   padding: 1rem 8rem;
   background: rgba(19, 28, 39, 1);
-
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 40;
   a {
     color: white;
     text-decoration: none;
   }
-  ul {
-    display: flex;
-    list-style: none;
-  }
+
   #logo {
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-family: "Lobster", cursive;
     font-weight: lighter;
   }
-  li {
-    padding-left: 10rem;
-    position: relative;
-  }
-  @media (max-width: 1300px) {
+
+  @media (max-width: 768px) {
     flex-direction: column;
-    padding: 2rem 1rem;
+    padding: 1rem;
     #logo {
       display: inline-block;
       margin: 1rem;
-    }
-    ul {
-      padding: 2rem;
-      justify-content: space-around;
-      width: 100%;
-    }
-    li {
-      padding: 0;
     }
   }
 `;

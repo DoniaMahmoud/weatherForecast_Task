@@ -22,7 +22,6 @@ const StyledFooter = styled.div`
     flex-wrap: wrap;
   }
   h5 {
-    /* flex: 1 1 40rem; */
     font-size: 1.2rem;
   }
 `;

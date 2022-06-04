@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 
-//The actual value to be accessed
 export const LocationContext = createContext({
   countryContext: null,
   setCountryContext: () => null,

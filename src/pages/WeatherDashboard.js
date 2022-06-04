@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import FetchWeatherData from "../components/FetchWeatherData";
-import FetchAllCities from "../components/FetchAllCities";
+import GetAllCities from "../components/GetAllCities";
+import ScrollTop from "../components/ScrollTop";
 const WeatherDashboard = () => {
   return (
     <StyledDashboard>
       <FetchWeatherData />
-      <FetchAllCities />
+      <GetAllCities />
+      <ScrollTop />
     </StyledDashboard>
   );
 };
 const StyledDashboard = styled.div`
-  background: linear-gradient(to bottom, #6161e7b8, #96815cc0, #e72222c6);
+  background: linear-gradient(to bottom, #6161e7b8, #ca9232c0, #e72222c6);
 `;
 export default WeatherDashboard;

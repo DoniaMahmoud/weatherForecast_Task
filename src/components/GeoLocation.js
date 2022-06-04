@@ -49,19 +49,7 @@ const GeoLocation = () => {
     }
   };
 
-  return <div>{/* <h4>Current Location</h4> */}</div>;
+  return null;
 };
 
 export default GeoLocation;
-// <Address>
-//   {stateContext && <p> {` ${stateContext}, ${country} `}</p>}
-
-//   {latitude && longitude ? (
-//     <img
-//       src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=14&size=300x200&sensor=false&markers=color:red%7c${latitude},${longitude}&key=${GOOGLE_API_KEY}`}
-//       alt=""
-//     />
-//   ) : (
-//     ""
-//   )}
-// </Address>

@@ -4,13 +4,13 @@ import Nav from "./components/Nav";
 import GlobalStyle from "./components/GlobalStyle";
 import WeatherDashboard from "./pages/WeatherDashboard";
 import Footer from "./components/Footer";
+
 function App() {
   const location = useLocation();
   return (
     <div className="App">
       <GlobalStyle />
       <Nav />
-      {/*Switch stops as soon as it matches first URL*/}
       <Switch location={location} key={location.pathname}>
         <Route path="/city/:id" exact>
           <WeatherDashboard />
@@ -19,6 +19,7 @@ function App() {
           <LandingPage />
         </Route>
       </Switch>
+
       <Footer />
     </div>
   );

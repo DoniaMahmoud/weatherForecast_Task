@@ -1,34 +1,43 @@
-import axios from "axios";
 import { LocationContext } from "../contexts/LocationContext";
-import { CITIES_API } from "../API";
 import { useEffect, useContext, useState } from "react";
-import { v4 as uuid } from "uuid";
 import styled from "styled-components";
+import csc from "country-state-city";
 import { Link } from "react-router-dom";
-const FetchAllCities = () => {
-  const { countryContext } = useContext(LocationContext);
-  const [cities, setCities] = useState([]);
+import { v4 as uuid } from "uuid";
 
+const GetAllCities = () => {
+  const { countryContext } = useContext(LocationContext);
+  const [countryId, setCountryID] = useState("");
+  const [cities, setCities] = useState([]);
+  const countries = csc.getAllCountries();
+
+  function prepareData() {
+    const country = countryContext.substring(1);
+    for (let i = 0; i < countries.length; i++) {
+      if (countries[i].name == country) {
+        setCountryID(countries[i].id);
+      }
+    }
+  }
+  function getCities() {
+    let allCities = csc.getStatesOfCountry(countryId);
+    setCities(allCities);
+  }
   useEffect(() => {
     if (countryContext) {
-      axios
-        .get(`${CITIES_API}${countryContext}`)
-        .then((response) => {
-          var data = JSON.stringify(response.data);
-          var json = JSON.parse(data);
-          setCities(json);
-        })
-        .catch((err) => console.log(err.response));
+      prepareData();
     }
-  }, [countryContext]);
-
+    if (countryId) {
+      getCities();
+    }
+  }, [countryContext, countryId]);
   return (
     <MainContainer>
       <h4>Different Cities</h4>
       <StyledCities>
         {cities.map((element) => (
-          <Link key={uuid()} to={`/city/${element}`}>
-            <p>{element}</p>
+          <Link key={uuid()} to={`/city/${element.name}`}>
+            <p>{element.name}</p>
           </Link>
         ))}
       </StyledCities>
@@ -54,6 +63,27 @@ const StyledCities = styled.div`
   margin: 2rem 0rem;
   background: rgba(19, 28, 39, 0.3);
   border-radius: 5px;
+  height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c96666ba;
+  }
   a {
     text-decoration: none;
   }
@@ -75,5 +105,10 @@ const StyledCities = styled.div`
     border-radius: 4px;
     animation: animate 0.5s forwards;
   }
+  @media screen and (max-width: 800px) {
+    p {
+      font-size: 2vw;
+    }
+  }
 `;
-export default FetchAllCities;
+export default GetAllCities;

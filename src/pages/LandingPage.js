@@ -1,17 +1,20 @@
 import GeoLocation from "../components/GeoLocation";
 import FetchWeatherData from "../components/FetchWeatherData";
-import FetchAllCities from "../components/FetchAllCities";
+import GetAllCities from "../components/GetAllCities";
 import styled from "styled-components";
+import ScrollTop from "../components/ScrollTop";
+
 const LandingPage = () => {
   return (
     <StyledLanding>
       <GeoLocation />
       <FetchWeatherData />
-      <FetchAllCities />
+      <GetAllCities />
+      <ScrollTop />
     </StyledLanding>
   );
 };
 const StyledLanding = styled.div`
-  background: linear-gradient(to bottom, #6161e7b8, #96815cc0, #e72222c6);
+  background: linear-gradient(to bottom, #6161e7b8, #ca9232c0, #e72222c6);
 `;
 export default LandingPage;
